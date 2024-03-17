@@ -1,8 +1,10 @@
+import React from "react";
 import "./header.css";
 import Nav from "./Nav";
 
 type HeaderProps = {
   title: string;
+  activePages: { id: number; title: string; href: string; active: boolean }[];
 };
 
 const links = [
@@ -11,11 +13,11 @@ const links = [
   { label: "Contact", href: "/contact" },
 ];
 
-const Header: React.FC<HeaderProps> = ({ title }) => {
+const Header: React.FC<HeaderProps> = ({ title, activePages }) => {
   return (
     <header>
       <h1 className="title">{title}</h1>
-      <Nav links={links} />
+      <Nav links={links} activePages={activePages} /> {/* Check this line */}
     </header>
   );
 };

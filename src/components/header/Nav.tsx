@@ -1,17 +1,21 @@
+import React from "react";
 import "./header.css";
 
 type NavProps = {
   links: { label: string; href: string }[];
+  activePages: { id: number; title: string; href: string; active: boolean }[];
 };
 
-const Nav: React.FC<NavProps> = ({ links }) => {
+const Nav: React.FC<NavProps> = ({ links, activePages }) => {
+  console.log(activePages);
+
   return (
     <nav>
       <ul className="navList">
-        {links.map((link) => (
-          <li key={link.href} className="listItem">
-            <a href={link.href} className="linkItem">
-              {link.label}
+        {activePages.map((pageLink) => (
+          <li key={pageLink.id}>
+            <a href={pageLink.href} className={pageLink.active ? "active" : ""}>
+              {pageLink.title}
             </a>
           </li>
         ))}
